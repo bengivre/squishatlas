@@ -1,0 +1,17 @@
+# Throwaway Postgres 16 for local dev without the full stack.
+# For the full four-service stack, use: docker compose up --build
+# Usage: docker compose -f docker-compose.dev.yml up -d
+services:
+  db:
+    image: postgres:16
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: squishmallow
+      POSTGRES_PASSWORD: squishmallow
+      POSTGRES_DB: squishmallow
+    volumes:
+      - squishmallow_pg_dev:/var/lib/postgresql/data
+
+volumes:
+  squishmallow_pg_dev:

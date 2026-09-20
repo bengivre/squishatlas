@@ -1,0 +1,14 @@
+node_modules
+.next
+.git
+.env
+.env.*
+!.env.example
+.agents
+.claude
+docker-compose.dev.yml
+*.md
+!README.md
+scripts/verify-db.ts
+scripts/verify-auth.ts
+scripts/verify-superadmin-seed.ts

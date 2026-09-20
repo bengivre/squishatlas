@@ -1,0 +1,22 @@
+# Shared routing — imported by HTTP and HTTPS site blocks.
+(common) {
+	# Pre-generated WebP derivatives; bypass Next.js image pipeline.
+	handle_path /uploads/* {
+		root * /data/uploads
+		header Cache-Control "public, max-age=31536000, immutable"
+		file_server
+	}
+
+	handle {
+		reverse_proxy web:3000
+	}
+}
+
+# Local dev and HTTP-only deployments (TLS terminated elsewhere).
+:80 {
+	import common
+}
+
+# HTTPS site block is appended at container start when CADDY_DOMAIN is set.
+# See docker/caddy/entrypoint.sh — automatic Let's Encrypt by default,
+# or manual certs via CADDY_TLS_CERT + CADDY_TLS_KEY.

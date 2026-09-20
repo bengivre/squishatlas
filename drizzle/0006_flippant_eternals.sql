@@ -1,0 +1,1 @@
+ALTER TABLE "tenant_settings" ADD COLUMN "allow_indexing" boolean DEFAULT false NOT NULL;
